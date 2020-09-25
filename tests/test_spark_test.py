@@ -59,6 +59,15 @@ def test_assert_schema_equal(spark):
     with pytest.raises(AssertionError):
         assert_schema_equal(expected, result)
 
+    result = StructType(
+        [
+            StructField('Age', ShortType(), True),
+            StructField('Name', StringType(), True),
+        ]
+    )
+
+    assert_schema_equal(expected, result)
+
 
 def test_assert_rdd_equal(spark):
     sc = spark.sparkContext

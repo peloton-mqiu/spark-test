@@ -190,7 +190,9 @@ def assert_schema_equal(left: StructType, right: StructType):
         " +  where {r_name}'s {attr} = {r_val}"
     )
 
-    for l_field, r_field in zip(left, right):
+    for l_field, r_field in zip(
+        sorted(left, key=lambda x: x.name), sorted(right, key=lambda x: x.name)
+    ):
 
         assert l_field.name == r_field.name, msg.format(
             attr='name', l_name=l_field.name, l_val=l_field.name,
